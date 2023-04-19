@@ -1,9 +1,14 @@
 <template>
-  <div>我是搜索</div>
+  <div>
+    <div>params参数{{ $route.params.keyWord }}</div>
+    <div>query参数{{ $route.query.k }}</div>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['keyWord']
+}
 </script>
 
 <style>

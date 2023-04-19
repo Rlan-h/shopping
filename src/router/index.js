@@ -17,21 +17,26 @@ export default new VueRouter({
     {
       path: '/home',
       component: Home,
+      name: 'home',
       meta: {show: true}
     },
     {
-      path: '/search',
+      path: '/search/:keyWord?',
       component: Search,
-      meta: {show: true}
+      name: 'search',
+      meta: { show: true },
+      props: true
     },
     {
       path: '/login',
       component: Login,
+      name: 'login',
       meta: {show: false}
     },
     {
       path: '/register',
       component: Register,
+      name: 'register',
       meta: {show: false}
     },
     // 重定向
