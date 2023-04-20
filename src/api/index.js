@@ -9,4 +9,8 @@ export const reqCategoryList = () => {
 }
 // 发请求: axios 发送请求，返回的是一个 Promise 对象
 
-export const reqGetBannerList = ()=> mockRequests.get('/banner')
+// 获取 banner 数据
+export const reqGetBannerList = () => mockRequests.get('/banner')
+
+// 获取 floor 数据
+export const reqGetFloorList = () => mockRequests.get('/floor')

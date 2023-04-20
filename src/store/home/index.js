@@ -1,11 +1,13 @@
 // home 模块小仓库
-import { reqCategoryList, reqGetBannerList } from "@/api"
+import { reqCategoryList, reqGetBannerList, reqGetFloorList } from "@/api"
 
 const state = {
   // home仓库中存储三级菜单数据
   categoryList: [],
   // 轮播图的数据
-  bannerList: []
+  bannerList: [],
+  // floor 数据
+  floorList: []
 }
 const mutations = {
   CATEGORYLIST(state, categoryList) {
@@ -13,6 +15,9 @@ const mutations = {
   },
   GETBANNERLIST(state,bannerList) {
     state.bannerList = bannerList
+  },
+  GETFLOORLIST(state, floorList) {
+    state.floorList = floorList
   }
 }
 const actions = {
@@ -27,6 +32,13 @@ const actions = {
     let result = await reqGetBannerList()
     if (result.code === 200) {
       commit('GETBANNERLIST',result.data)
+    }
+  },
+  // 获取 floor 数据
+  async getFloorList({ commit }) {
+    let result = await reqGetFloorList()
+    if (result.code === 200) {
+      commit('GETFLOORLIST',result.data)
     }
   }
 }
