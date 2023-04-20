@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div>params参数{{ $route.params.keyWord }}</div>
-    <div>query参数{{ $route.query.k }}</div>
+    <TypeNav />
   </div>
 </template>
 

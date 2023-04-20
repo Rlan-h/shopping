@@ -5,8 +5,8 @@
         <!--banner轮播-->
         <div class="swiper-container" id="mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./images/banner1.jpg" />
+            <div class="swiper-slide" v-for="(carousel,index) in bannerList" :key="carousel.id">
+              <img :src="carousel.imgUrl" />
             </div>
           </div>
           <!-- 如果需要分页器 -->
@@ -102,16 +102,45 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import Swiper from 'swiper'
 export default {
   data() {
     return {}
   },
   methods: {},
-  components: {},
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {}
+  computed: {
+    ...mapState({
+      bannerList: state => state.home.bannerList
+    })
+  },
+  mounted() {
+    // 派发 action，通过 vuex 发起请求，将数据存储在仓库中
+    this.$store.dispatch('getBannerList')
+  },
+  watch: {
+    // 监听 bannerList 数据的变化
+    bannerList: {
+      handler(newVal, oldVal) {
+        // $nextTixk(): 在下一次 DOM 更新，循环结束之后，执行延迟回调；在修改数据之后，立即执行这个方法，获取更新后的 DOM
+        this.$nextTick(() => {
+          var mySwiper = new Swiper(document.querySelector('.swiper-container'), {
+            loop: true,
+            // 如果需要分页器
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true
+            },
+            // 如果需要前进后退按钮
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev'
+            }
+          })
+        })
+      }
+    }
+  }
 }
 </script>
 <style lang='less' scoped>

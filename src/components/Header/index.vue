@@ -51,13 +51,11 @@ export default {
     goSearch() {
       // this.$router.push('/search/' + this.keyWord + '?k=' + this.keyWord.toUpperCase())
       // this.$router.push(`/search/${this.keyWord}?k=${this.keyWord.toUpperCase()}`)
-      this.$router.push({
-        name: 'search',
-        params: {
-          keyWord: ''
-        },
-        query: { k: this.keyWord.toUpperCase() }
-      })
+      if (this.$route.query) {
+        let location = { name: 'search', params: { keyWord: this.keyWord || undefined } }
+        location.query = this.$route.query
+        this.$router.push(location)
+      }
     }
   }
 }
